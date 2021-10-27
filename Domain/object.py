@@ -8,13 +8,14 @@ def create_object(object_id: int, name, description, purchase_price, location):
     :param location: the purchase place of the object
     :return: an object
     """
-    return [
+    return {
         'obj_id': object_id,
         'name': name,
         'desc': description,
         'pur_price': purchase_price,
         'loc': location
     }
+
 
 def get_id(object):
     """
