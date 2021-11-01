@@ -4,11 +4,13 @@ from Logic.crud import create, update, delete, read
 
 def get_data():
     return [
-        create_object(1, 'monitor', 'Monitor LED IPS Dell 27 in', 899.90, 'eMAG'),
-        create_object(2, 'espressor', 'Espressor automat Philips EP3243/50', 2899.90, 'eMAG'),
-        create_object(3, 'scaun', 'Scaun de birou ergonomic Kring Fit', 629.99, 'eMAG'),
-        create_object(4, 'bec', 'Tub neon LED T5 90cm, Putere 15w', 27.80, 'eMAG'),
-        create_object(5, 'cană', 'Cana pisica Abby ceramica 350ml', 59.90, 'eMAG')
+        create_object(1, 'monitor', 'Monitor LED IPS Dell 27 in', 899.90, 'offc'),
+        create_object(2, 'espressor', 'Espressor automat Philips EP3243/50', 2899.90, 'hall'),
+        create_object(3, 'scaun', 'Scaun de birou ergonomic Kring Fit', 629.99, 'offc'),
+        create_object(4, 'bec', 'Tub neon LED T5 90cm, Putere 15w', 27.80, 'hall'),
+        create_object(5, 'cană', 'Cana pisica Abby ceramica 350ml', 59.90, 'offc'),
+        create_object(6, 'tablou', 'Tablou Canvas - Flori, Magnolia, 80 x 120 cm', 59.90, 'hall'),
+        create_object(7, 'telefon', 'Telefon fix analogic Panasonic KX-TS520FXB', 86.87, 'entr')
     ]
 
 

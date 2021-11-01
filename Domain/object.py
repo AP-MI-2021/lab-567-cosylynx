@@ -57,6 +57,5 @@ def get_loc(object):
 
 
 def get_str(object):
-    return f"The object called {get_name(object)} with id {get_id(object)} located at {get_loc(object)} purchased " \
-           f"at price {get_pur_price(object)} and with the following description: {get_desc(object)}"
-
+    return f"Object with ID: {get_id(object)}, name: {get_name(object)}, description: {get_desc(object)}, " \
+           f"purchase price: {get_pur_price(object)} and location: {get_loc(object)}"

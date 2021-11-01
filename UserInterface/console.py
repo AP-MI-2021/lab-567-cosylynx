@@ -1,11 +1,13 @@
 from Domain.object import get_str, create_object
-from Logic.crud import create, update, delete
+from Logic.crud import create, update, delete, read
+from Logic.functionality import locations_list, update_objects_location
 
 
 def show_menu():
-    print('1. CRUD')
+    print('')
+    print('1. CRUD (Create Read Update Delete)')
     print('2. Moving all objects from one location to another')
-    # print('3. ')
+    print('3. Show all objects')
     # print('4. ')
     # print('5. ')
     # print('6. ')
@@ -15,6 +17,7 @@ def show_menu():
 
 
 def handle_crud():
+    print('')
     print('1. Add object')
     print('2. Change object')
     print('3. Delete object')
@@ -56,8 +59,7 @@ def handle_delete(object_list):
     return delete(object_list, object_id)
 
 
-def run_crud_ui():
-    object_list = []
+def run_crud_ui(object_list):
     while True:
         handle_crud()
         ui_command = input("Enter an option: ")
@@ -70,21 +72,30 @@ def run_crud_ui():
         elif ui_command == 'a':
             handle_show_all(object_list)
         elif ui_command == 'b':
-            break
+            return object_list
         else:
             print("Invalid command! Please try again!")
 
 
+def handle_move(objects):
+    print(f"Used locations are: {locations_list(objects)}.")
+    move_from = input("Enter the location from which you wish to move all objects: ")
+    move_to = input("Enter the location where you want the objects to be moved: ")
+    return update_objects_location(objects, move_from, move_to)
+
+
 def run_main_ui():
+    object_list = []
     while True:
         show_menu()
         ui_command = input("Enter an option: ")
         if ui_command == '1':
-            run_crud_ui()
+            object_list = run_crud_ui(object_list)
         elif ui_command == '2':
-            print('hi')
+            handle_move(object_list)
+        elif ui_command == '3':
+            handle_show_all(object_list)
         elif ui_command == 'x':
             break
         else:
             print("Invalid command! Please try again!")
-
