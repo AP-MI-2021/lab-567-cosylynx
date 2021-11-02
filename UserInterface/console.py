@@ -4,6 +4,7 @@ from Logic.crud import create, update, delete
 from Logic.most_expensive_from_location import get_highest_price_at_location
 from Logic.move_items import locations_list, update_items_location
 from Logic.order_ascending_price import order_ascending_by_price
+from Logic.total_worth_in_location import sum_of_all_prices_in_a_place
 
 
 def show_menu():
@@ -13,8 +14,8 @@ def show_menu():
     print('3. Adding a string to the description of items with the price greater than a value')
     print('4. Determine the most expensive item from a location')
     print('5. Order objects in ascending order by purchase price')
-    # print('6. ')
-    # print('7. ')
+    print('6. Determine the total worth of items from one location')
+    print('7. UNDO')
     print('a. Show all items')
     print('x. Exit Program')
     print('')
@@ -105,7 +106,15 @@ def handle_max_price_in_location(items):
 
 
 def handle_order_ascending(items):
-    return order_ascending_by_price(items)
+    print("The items have been ordered!")
+    for item in order_ascending_by_price(items):
+        print(item)
+
+
+def handle_total_worth(items):
+    print(f"Used locations are: {locations_list(items)}.")
+    from_location = input("Enter the location from where you want to determine the total worth of the items: ")
+    print(f"The total worth of all the items at this location is {sum_of_all_prices_in_a_place(items, from_location)}.")
 
 
 def run_main_ui():
@@ -123,6 +132,10 @@ def run_main_ui():
             handle_max_price_in_location(item_list)
         elif ui_command == '5':
             handle_order_ascending(item_list)
+        elif ui_command == '6':
+            handle_total_worth(item_list)
+        elif ui_command == '7':
+            pass
         elif ui_command == 'a':
             handle_show_all(item_list)
         elif ui_command == 'x':
