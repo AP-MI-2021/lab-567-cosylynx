@@ -1,4 +1,4 @@
-def create_object(object_id: int, name, description, purchase_price, location):
+def create_object(object_id: int, name: str, description: str, purchase_price: int, location: str):
     """
     Create an object.
     :param object_id: the ID of the object, it has to be unique

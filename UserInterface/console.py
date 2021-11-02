@@ -1,17 +1,17 @@
 from Domain.object import get_str, create_object
-from Logic.crud import create, update, delete, read
-from Logic.functionality import locations_list, update_objects_location
+from Logic.crud import create, update, delete
+from Logic.functionality import locations_list, update_objects_location, append_str_to_price_above
 
 
 def show_menu():
     print('')
     print('1. CRUD (Create Read Update Delete)')
     print('2. Moving all objects from one location to another')
-    print('3. Show all objects')
-    # print('4. ')
+    print('3. Adding a string to the description of objects with the price greater than a value')
     # print('5. ')
     # print('6. ')
     # print('7. ')
+    print('a. Show all objects')
     print('x. Exit Program')
     print('')
 
@@ -45,7 +45,7 @@ def handle_change(object_list):
     to_be_changed_id = int(input("Enter the object's ID you'd like to change: "))
     to_be_changed_name = input("Enter the object's new name: ")
     to_be_changed_desc = input("Enter the object's new description: ")
-    to_be_changed_pur_price = input("Enter the object's new purchase price: ")
+    to_be_changed_pur_price = int(input("Enter the object's new purchase price: "))
     to_be_changed_loc = input("Enter the object's new object location: ")
     new_object = create_object(to_be_changed_id, to_be_changed_name, to_be_changed_desc,
                                to_be_changed_pur_price, to_be_changed_loc)
@@ -84,6 +84,12 @@ def handle_move(objects):
     return update_objects_location(objects, move_from, move_to)
 
 
+def handle_add_str_do_description(objects):
+    threshold_price = int(input("Enter the minimum price of objects whose description will be modified: "))
+    add_string = input("Now enter a string to add to the end of their descriptions: ")
+    return append_str_to_price_above(objects, threshold_price, add_string)
+
+
 def run_main_ui():
     object_list = []
     while True:
@@ -94,6 +100,8 @@ def run_main_ui():
         elif ui_command == '2':
             handle_move(object_list)
         elif ui_command == '3':
+            handle_add_str_do_description(object_list)
+        elif ui_command == 'a':
             handle_show_all(object_list)
         elif ui_command == 'x':
             break
