@@ -1,5 +1,4 @@
-from Tests.test_crud import test_crud
-from Tests.test_functionality import test_functionalities
+from Tests.test_everything import test_everything
 from UserInterface.console import run_main_ui
 
 
@@ -8,6 +7,5 @@ def main():
 
 
 if __name__ == '__main__':
-    test_crud()
-    test_functionalities()
+    test_everything()
     main()

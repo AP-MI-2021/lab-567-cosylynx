@@ -1,6 +1,7 @@
 from Domain.object import get_str, create_object
+from Logic.add_string_to_description import append_str_to_price_above
 from Logic.crud import create, update, delete
-from Logic.functionality import locations_list, update_objects_location, append_str_to_price_above
+from Logic.move_objects import locations_list, update_objects_location
 
 
 def show_menu():

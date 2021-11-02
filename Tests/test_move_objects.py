@@ -1,4 +1,4 @@
-from Logic.functionality import get_from_location, locations_list, update_objects_location, append_str_to_price_above
+from Logic.move_objects import get_from_location, locations_list, update_objects_location
 from Tests.test_crud import get_data
 
 
@@ -29,24 +29,7 @@ def test_update_objects_location():
     ]
 
 
-def test_append_str_to_price_above():
-    objects = get_data()
-    assert append_str_to_price_above(objects, 200, "- check integrity") == [
-        [1, 'monitor', 'Monitor LED IPS Dell 27 in - check integrity', 899.90, 'offc'],
-        [2, 'espressor', 'Espressor automat Philips EP3243/50 - check integrity', 2899.90, 'hall'],
-        [3, 'scaun', 'Scaun de birou ergonomic Kring Fit - check integrity', 629.99, 'offc'],
-        [4, 'bec', 'Tub neon LED T5 90cm, Putere 15w', 27.80, 'hall'],
-        [5, 'cană', 'Cana pisica Abby ceramica 350ml', 59.90, 'offc'],
-        [6, 'tablou', 'Tablou Canvas - Flori, Magnolia, 80 x 120 cm', 59.90, 'hall'],
-        [7, 'telefon', 'Telefon fix analogic Panasonic KX-TS520FXB', 86.87, 'entr']
-    ]
-
-
-def test_functionalities():
-    # Moving object from one location to another
+def test_move_objects():
     test_get_from_location()
     test_locations_list()
     test_update_objects_location()
-    # Adding a string to the end of objects' descriptions if their price is greater than a given
-    test_append_str_to_price_above()
-
