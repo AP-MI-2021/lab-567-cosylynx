@@ -3,6 +3,7 @@ from Logic.add_string_to_description import append_str_to_price_above
 from Logic.crud import create, update, delete
 from Logic.most_expensive_from_location import get_highest_price_at_location
 from Logic.move_items import locations_list, update_items_location
+from Logic.order_ascending_price import order_ascending_by_price
 
 
 def show_menu():
@@ -11,7 +12,7 @@ def show_menu():
     print('2. Moving all items from one location to another')
     print('3. Adding a string to the description of items with the price greater than a value')
     print('4. Determine the most expensive item from a location')
-    # print('5. ')
+    print('5. Order objects in ascending order by purchase price')
     # print('6. ')
     # print('7. ')
     print('a. Show all items')
@@ -51,7 +52,7 @@ def handle_change(item_list):
     to_be_changed_pur_price = float(input("Enter the item's new purchase price: "))
     to_be_changed_loc = input("Enter the item's new item location: ")
     new_item = create_item(to_be_changed_id, to_be_changed_name, to_be_changed_desc,
-                               to_be_changed_pur_price, to_be_changed_loc)
+                           to_be_changed_pur_price, to_be_changed_loc)
     print('Changes have been made!')
     return update(item_list, new_item)
 
@@ -103,6 +104,10 @@ def handle_max_price_in_location(items):
         print(item)
 
 
+def handle_order_ascending(items):
+    return order_ascending_by_price(items)
+
+
 def run_main_ui():
     item_list = []
     while True:
@@ -116,6 +121,8 @@ def run_main_ui():
             handle_add_str_do_description(item_list)
         elif ui_command == '4':
             handle_max_price_in_location(item_list)
+        elif ui_command == '5':
+            handle_order_ascending(item_list)
         elif ui_command == 'a':
             handle_show_all(item_list)
         elif ui_command == 'x':
