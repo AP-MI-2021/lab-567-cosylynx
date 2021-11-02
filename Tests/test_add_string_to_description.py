@@ -17,3 +17,4 @@ def test_append_str_to_price_above():
 
 def test_add_string_to_description():
     test_append_str_to_price_above()
+

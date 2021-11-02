@@ -36,7 +36,7 @@ def handle_add(object_list):
     obj_id = int(input("Enter object ID: "))
     obj_name = input("Enter object name: ")
     obj_desc = input("Enter object description: ")
-    obj_pur_price = int(input("Enter object purchase price: "))
+    obj_pur_price = float(input("Enter object purchase price: "))
     obj_location = input("Enter object location: ")
     print('Object succesfully added!')
     return create(object_list, obj_id, obj_name, obj_desc, obj_pur_price, obj_location)
@@ -46,7 +46,7 @@ def handle_change(object_list):
     to_be_changed_id = int(input("Enter the object's ID you'd like to change: "))
     to_be_changed_name = input("Enter the object's new name: ")
     to_be_changed_desc = input("Enter the object's new description: ")
-    to_be_changed_pur_price = int(input("Enter the object's new purchase price: "))
+    to_be_changed_pur_price = float(input("Enter the object's new purchase price: "))
     to_be_changed_loc = input("Enter the object's new object location: ")
     new_object = create_object(to_be_changed_id, to_be_changed_name, to_be_changed_desc,
                                to_be_changed_pur_price, to_be_changed_loc)
