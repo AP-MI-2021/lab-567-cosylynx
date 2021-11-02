@@ -1,62 +1,62 @@
-from Domain.object import create_object, get_id
+from Domain.item import create_item, get_id
 
 
-def create(objects_lst, object_id: int, name, description, purchase_price, location):
+def create(items_lst, item_id: int, name, description, purchase_price, location):
     """
-    Creates a new object.
-    :param objects_lst: a list containing created objects
-    :param object_id: the ID of the object, it has to be unique
-    :param name: the name of the object
-    :param description: a description of the object
-    :param purchase_price: the price the object had when it was purchased
-    :param location: the current place of the object
-    :return: a new list containing objects_lst and the newly created object
+    Creates a new item.
+    :param items_lst: a list containing created items
+    :param item_id: the ID of the item, it has to be unique
+    :param name: the name of the item
+    :param description: a description of the item
+    :param purchase_price: the price the item had when it was purchased
+    :param location: the current place of the item
+    :return: a new list containing items_lst and the newly created item
     """
-    object = create_object(object_id, name, description, purchase_price, location)
-    return objects_lst + [object]
+    item = create_item(item_id, name, description, purchase_price, location)
+    return items_lst + [item]
 
 
-def read(objects_lst, object_id=None):
+def read(items_lst, item_id=None):
     """
-    Reads an object from the available list.
-    :param objects_lst: a list containing objects
-    :param object_id: the ID of the object
-    :return: the object with ID object_id, or the whole object list if object_id = None
+    Reads an item from the available list.
+    :param items_lst: a list containing items
+    :param item_id: the ID of the item
+    :return: the item with ID item_id, or the whole item list if item_id = None
     """
-    object_with_id = None
-    for object in objects_lst:
-        if get_id(object) == object_id:
-            object_with_id = object
-    if object_with_id:
-        return object_with_id
-    return objects_lst
+    item_with_id = None
+    for item in items_lst:
+        if get_id(item) == item_id:
+            item_with_id = item
+    if item_with_id:
+        return item_with_id
+    return items_lst
 
 
-def update(objects_lst, new_object):
+def update(items_lst, new_item):
     """
-    Update an object.
-    :param objects_lst: the list of objects
-    :param new_object: the object from the list that will update - id must be existent
-    :return: a list with the updated object
+    Update an item.
+    :param items_lst: the list of items
+    :param new_item: the item from the list that will update - id must be existent
+    :return: a list with the updated item
     """
-    new_objects = []
-    for object in objects_lst:
-        if get_id(object) != get_id(new_object):
-            new_objects.append(object)
+    new_items = []
+    for item in items_lst:
+        if get_id(item) != get_id(new_item):
+            new_items.append(item)
         else:
-            new_objects.append(new_object)
-    return new_objects
+            new_items.append(new_item)
+    return new_items
 
 
-def delete(objects_lst, object_id):
+def delete(items_lst, item_id):
     """
-    Delete an object from the object list.
-    :param objects_lst: the list of objects
-    :param object_id: the ID of the object
-    :return: a list of objects without the one select for deletion
+    Delete an item from the item list.
+    :param items_lst: the list of items
+    :param item_id: the ID of the item
+    :return: a list of items without the one select for deletion
     """
-    new_objects = []
-    for object in objects_lst:
-        if get_id(object) != object_id:
-            new_objects.append(object)
-    return new_objects
+    new_items = []
+    for item in items_lst:
+        if get_id(item) != item_id:
+            new_items.append(item)
+    return new_items
