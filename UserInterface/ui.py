@@ -15,7 +15,7 @@ def show_menu():
     print('4. Determine the most expensive item from a location')
     print('5. Order objects in ascending order by purchase price')
     print('6. Determine the total worth of items from one location')
-    print('7. UNDO')
+    print('7. UNDO ~not working yet~')
     print('a. Show all items')
     print('x. Exit Program')
     print('')
