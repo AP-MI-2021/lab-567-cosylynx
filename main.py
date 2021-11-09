@@ -1,10 +1,9 @@
 from Tests.test_everything import test_everything
-from UserInterface.ui import run_main_ui
+from UserInterface.ui import run_ui
 
 
 def main():
-    run_main_ui()
-    run_console_ui()
+    run_ui()
 
 
 if __name__ == '__main__':

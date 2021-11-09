@@ -8,5 +8,4 @@ def order_ascending_by_price(items):
     :return: the ordered list
     """
     items.sort(key=itemgetter(3))
-    print(items)
     return items

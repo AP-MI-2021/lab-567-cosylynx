@@ -5,6 +5,7 @@ from Logic.most_expensive_from_location import get_highest_price_at_location
 from Logic.move_items import locations_list, update_items_location
 from Logic.order_ascending_price import order_ascending_by_price
 from Logic.total_worth_in_location import sum_of_all_prices_in_a_place
+from UserInterface.console_ui import run_console_ui
 
 
 def show_menu():
@@ -117,7 +118,7 @@ def handle_total_worth(items):
     print(f"The total worth of all the items at this location is {sum_of_all_prices_in_a_place(items, from_location)}.")
 
 
-def run_main_ui():
+def run_menu_ui():
     item_list = []
     while True:
         show_menu()
@@ -142,3 +143,17 @@ def run_main_ui():
             break
         else:
             print("Invalid command! Please try again!")
+
+
+def run_ui():
+    print("")
+    option = input("1. Interactive\n"
+                   "2. Console mode\n"
+                   "Select an interface type: ")
+    print("")
+    if option == '1':
+        run_menu_ui()
+    elif option == '2':
+        run_console_ui()
+    else:
+        print("No option has been selected. Bad input!")
