@@ -16,8 +16,8 @@ def get_data():
 
 def test_create():
     items = get_data()
-    params = (100, 'new obj', 'new desc', 99.99, 'home')
-    o_new = create_item(*params)
+    params = (100, 'new obj', 'new desc', 99.99, 'home', [], [])
+    o_new = create_item(*params[:-2])
     new_items = create(items, *params)
     assert len(new_items) == len(items) + 1
     assert o_new in new_items
@@ -33,7 +33,7 @@ def test_read():
 def test_update():
     items = get_data()
     o_updated = create_item(2, "new obj", "nice obj", 100.00, "eBay")
-    updated = update(items, o_updated)
+    updated = update(items, o_updated, [], [])
     assert o_updated in updated
     assert o_updated not in items
     assert len(items) == len(updated)
@@ -43,7 +43,7 @@ def test_delete():
     items = get_data()
     to_delete = 2
     o_deleted = read(items, to_delete)
-    deleted = delete(items, to_delete)
+    deleted = delete(items, to_delete, [], [])
     assert o_deleted not in deleted
     assert o_deleted in items
     assert len(deleted) == len(items) - 1

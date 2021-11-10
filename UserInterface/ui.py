@@ -5,6 +5,7 @@ from Logic.most_expensive_from_location import get_highest_price_at_location
 from Logic.move_items import locations_list, update_items_location
 from Logic.order_ascending_price import order_ascending_by_price
 from Logic.total_worth_in_location import sum_of_all_prices_in_a_place
+from Logic.undo_redo import do_undo, do_redo
 from UserInterface.console_ui import run_console_ui
 
 
@@ -16,7 +17,8 @@ def show_menu():
     print('4. Determine the most expensive item from a location')
     print('5. Order objects in ascending order by purchase price')
     print('6. Determine the total worth of items from one location')
-    print('7. UNDO ~not working yet~')
+    print('u. Undo')
+    print('r. Redo')
     print('a. Show all items')
     print('x. Exit Program')
     print('')
@@ -37,17 +39,17 @@ def handle_show_all(items):
         print(get_str(item))
 
 
-def handle_add(item_list):
+def handle_add(item_list, undo, redo):
     obj_id = int(input("Enter item ID: "))
     obj_name = input("Enter item name: ")
     obj_desc = input("Enter item description: ")
     obj_pur_price = float(input("Enter item purchase price: "))
     obj_location = input("Enter item location: ")
     print('item succesfully added!')
-    return create(item_list, obj_id, obj_name, obj_desc, obj_pur_price, obj_location)
+    return create(item_list, obj_id, obj_name, obj_desc, obj_pur_price, obj_location, undo, redo)
 
 
-def handle_change(item_list):
+def handle_change(item_list, undo, redo):
     to_be_changed_id = int(input("Enter the item's ID you'd like to change: "))
     to_be_changed_name = input("Enter the item's new name: ")
     to_be_changed_desc = input("Enter the item's new description: ")
@@ -56,25 +58,25 @@ def handle_change(item_list):
     new_item = create_item(to_be_changed_id, to_be_changed_name, to_be_changed_desc,
                            to_be_changed_pur_price, to_be_changed_loc)
     print('Changes have been made!')
-    return update(item_list, new_item)
+    return update(item_list, new_item, undo, redo)
 
 
-def handle_delete(item_list):
+def handle_delete(item_list, undo, redo):
     item_id = int(input("Enter item ID to be deleted: "))
     print('Deleted succesfully!')
-    return delete(item_list, item_id)
+    return delete(item_list, item_id, undo, redo)
 
 
-def run_crud_ui(item_list):
+def run_crud_ui(item_list, undo, redo):
     while True:
         handle_crud()
         ui_command = input("Enter an option: ")
         if ui_command == '1':
-            item_list = handle_add(item_list)
+            item_list = handle_add(item_list, undo, redo)
         elif ui_command == '2':
-            item_list = handle_change(item_list)
+            item_list = handle_change(item_list, undo, redo)
         elif ui_command == '3':
-            item_list = handle_delete(item_list)
+            item_list = handle_delete(item_list, undo, redo)
         elif ui_command == 'a':
             handle_show_all(item_list)
         elif ui_command == 'b':
@@ -118,13 +120,30 @@ def handle_total_worth(items):
     print(f"The total worth of all the items at this location is {sum_of_all_prices_in_a_place(items, from_location)}.")
 
 
+def handle_undo(item_list, undo, redo):
+    undo_result = do_undo(undo, redo, item_list)
+    if undo_result is not None:
+        return undo_result
+    return item_list
+
+
+def handle_redo(item_list, undo, redo):
+    redo_result = do_redo(undo, redo, item_list)
+    if redo_result is not None:
+        return redo_result
+    return item_list
+
+
 def run_menu_ui():
     item_list = []
+    undo = []
+    redo = []
     while True:
+        handle_show_all(item_list)
         show_menu()
         ui_command = input("Enter an option: ")
         if ui_command == '1':
-            item_list = run_crud_ui(item_list)
+            item_list = run_crud_ui(item_list, undo, redo)
         elif ui_command == '2':
             handle_move(item_list)
         elif ui_command == '3':
@@ -135,8 +154,10 @@ def run_menu_ui():
             handle_order_ascending(item_list)
         elif ui_command == '6':
             handle_total_worth(item_list)
-        elif ui_command == '7':
-            pass
+        elif ui_command == 'u':
+            item_list = handle_undo(item_list, undo, redo)
+        elif ui_command == 'r':
+            item_list = handle_redo(item_list, undo, redo)
         elif ui_command == 'a':
             handle_show_all(item_list)
         elif ui_command == 'x':
