@@ -18,6 +18,8 @@ def help_dialog():
 
 def run_console_ui():
     item_list = []
+    undo = []
+    redo = []
     print("Type a few commands separated by ';' then press ENTER")
     while True:
         commands_str = input(">>>")
@@ -28,11 +30,11 @@ def run_console_ui():
             else:
                 args = command.split(',')
                 if args[0] == "add":
-                    item_list = validate_add(args, item_list)
+                    item_list = validate_add(args, item_list, undo, redo)
                 elif args[0] == "remove":
-                    item_list = validate_remove(args, item_list)
+                    item_list = validate_remove(args, item_list, undo, redo)
                 elif args[0] == "update":
-                    item_list = validate_update(args, item_list)
+                    item_list = validate_update(args, item_list, undo, redo)
                 elif args[0] == "showall":
                     validate_showall(args, item_list)
                 else:
@@ -40,10 +42,10 @@ def run_console_ui():
                     help_dialog()
 
 
-def validate_add(args, item_list):
+def validate_add(args, item_list, undo, redo):
     if len(args) == 6:
         try:
-            item_list = create(item_list, int(args[1]), args[2], args[3], float(args[4]), args[5])
+            item_list = create(item_list, int(args[1]), args[2], args[3], float(args[4]), args[5], undo, redo)
         except ValueError:
             print("Argument for item ID should be a valid integer.\n"
                   "Argument for purchase price should be a valid float.")
@@ -52,10 +54,11 @@ def validate_add(args, item_list):
     return item_list
 
 
-def validate_update(args, item_list):
+def validate_update(args, item_list, undo, redo):
     if len(args) == 6:
         try:
-            item_list = update(item_list, create_item(int(args[1]), args[2], args[3], float(args[4]), args[5]))
+            item_list = update(item_list, create_item(int(args[1]), args[2], args[3],
+                                                      float(args[4]), args[5]), undo, redo)
         except ValueError:
             print("Argument for item ID should be a valid integer.\n"
                   "Argument for purchase price should be a valid float.")
@@ -64,10 +67,10 @@ def validate_update(args, item_list):
     return item_list
 
 
-def validate_remove(args, item_list):
+def validate_remove(args, item_list, undo, redo):
     if len(args) == 2:
         try:
-            item_list = delete(item_list, int(args[1]))
+            item_list = delete(item_list, int(args[1]), undo, redo)
         except ValueError:
             print("Argument for item ID should be a valid integer.")
     else:

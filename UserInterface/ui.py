@@ -85,12 +85,12 @@ def run_crud_ui(item_list, undo, redo):
             print("Invalid command! Please try again!")
 
 
-def handle_move(items):
+def handle_move(items, undo, redo):
     print(f"Used locations are: {locations_list(items)}.")
     move_from = input("Enter the location from which you wish to move all items: ")
     move_to = input("Enter the location where you want the items to be moved: ")
     print("items have been moved succesfully!")
-    return update_items_location(items, move_from, move_to)
+    return update_items_location(items, move_from, move_to, undo, redo)
 
 
 def handle_add_str_do_description(items):
@@ -145,7 +145,7 @@ def run_menu_ui():
         if ui_command == '1':
             item_list = run_crud_ui(item_list, undo, redo)
         elif ui_command == '2':
-            handle_move(item_list)
+            handle_move(item_list, undo, redo)
         elif ui_command == '3':
             handle_add_str_do_description(item_list)
         elif ui_command == '4':

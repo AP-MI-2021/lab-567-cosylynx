@@ -28,9 +28,11 @@ def locations_list(items):
     return locations
 
 
-def update_items_location(items, location_from: str, location_to: str):
+def update_items_location(items, location_from: str, location_to: str, undo, redo):
     """
     Moves items from one location to the other.
+    :param redo:
+    :param undo:
     :param items: the list of all items
     :param location_from: the location from where items are moved
     :param location_to: the location to where items are moved
@@ -40,4 +42,6 @@ def update_items_location(items, location_from: str, location_to: str):
         for item in items:
             if get_id(obj_from_loc) == get_id(item):
                 item[4] = location_to
+    undo.append(items)
+    redo.clear()
     return items

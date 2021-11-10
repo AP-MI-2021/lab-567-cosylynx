@@ -18,7 +18,7 @@ def test_locations_list():
 
 def test_update_items_location():
     items = get_data()
-    assert update_items_location(items, "offc", "home") == [
+    assert update_items_location(items, "offc", "home", [], []) == [
         [1, 'monitor', 'Monitor LED IPS Dell 27 in', 899.90, 'home'],
         [2, 'espressor', 'Espressor automat Philips EP3243/50', 2899.90, 'hall'],
         [3, 'scaun', 'Scaun de birou ergonomic Kring Fit', 629.99, 'home'],
