@@ -1,5 +1,6 @@
 def do_undo(undo_lst, redo_lst, current_list):
     """
+    :param current_list:
     :param undo_lst:
     :param redo_lst:
     :return:
@@ -12,6 +13,7 @@ def do_undo(undo_lst, redo_lst, current_list):
 
 def do_redo(undo_lst, redo_lst, current_list):
     """
+    :param current_list:
     :param undo_lst:
     :param redo_lst:
     :return:

@@ -1,5 +1,5 @@
 from Domain.item import get_pur_price
-from Logic.move_items import get_from_location
+from Logic.move_items import get_from_location, locations_list
 
 
 def get_highest_price_at_location(items, location: str):
@@ -9,6 +9,8 @@ def get_highest_price_at_location(items, location: str):
     :param location: the location from where the user needs the most expensive item
     :return: a list with the most expensive items(if more items have the same price)
     """
+    if location not in locations_list(items):
+        raise ValueError('The location you gave is not in the list of locations!')
     max_price = 0
     items_with_max_price = []
     items_at_location = get_from_location(items, location)

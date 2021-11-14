@@ -23,6 +23,8 @@ def run_menu_ui():
     redo = []
     while True:
         try:
+            print(undo)
+            print(redo)
             handle_show_all(item_list)  # to delete this line after undo redo working correctly
             show_main_menu()
             ui_command = input("Enter an option: ")
@@ -81,6 +83,7 @@ def run_crud_ui(item_list, undo, redo):
                 print("Invalid command! Please try again!")
         except Exception as ex:
             print(f"Error: {ex}")
+
 
 def run_ui():
     print("")

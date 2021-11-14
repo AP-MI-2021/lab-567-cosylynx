@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from Domain.item import get_loc, get_id
 
 
@@ -38,10 +40,14 @@ def update_items_location(items, location_from: str, location_to: str, undo, red
     :param location_to: the location to where items are moved
     :return: a list of items with the new location
     """
+    if location_from not in locations_list(items):
+        raise ValueError('The move-from location must be chosen from the list above!')
+    if len(location_to) > 4:
+        raise ValueError(f"The new location must have 4 characters at most!")
+    undo.append(deepcopy(items))
+    redo.clear()
     for obj_from_loc in get_from_location(items, location_from):
         for item in items:
             if get_id(obj_from_loc) == get_id(item):
                 item[4] = location_to
-    undo.append(items)
-    redo.clear()
     return items
