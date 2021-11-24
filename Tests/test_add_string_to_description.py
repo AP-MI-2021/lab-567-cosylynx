@@ -4,7 +4,9 @@ from Tests.test_crud import get_data
 
 def test_append_str_to_price_above():
     items = get_data()
-    assert append_str_to_price_above(items, 200, "- check integrity") == [
+    undo = []
+    redo = []
+    assert append_str_to_price_above(items, 200, "- check integrity", undo, redo) == [
         [1, 'monitor', 'Monitor LED IPS Dell 27 in - check integrity', 899.90, 'offc'],
         [2, 'espressor', 'Espressor automat Philips EP3243/50 - check integrity', 2899.90, 'hall'],
         [3, 'scaun', 'Scaun de birou ergonomic Kring Fit - check integrity', 629.99, 'offc'],

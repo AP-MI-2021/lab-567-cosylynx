@@ -23,9 +23,6 @@ def run_menu_ui():
     redo = []
     while True:
         try:
-            print(undo)
-            print(redo)
-            handle_show_all(item_list)  # to delete this line after undo redo working correctly
             show_main_menu()
             ui_command = input("Enter an option: ")
             if ui_command == '1':

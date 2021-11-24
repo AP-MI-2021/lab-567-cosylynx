@@ -4,7 +4,9 @@ from Tests.test_crud import get_data
 
 def test_order_ascending_by_price():
     items = get_data()
-    assert order_ascending_by_price(items) == [
+    undo = []
+    redo = []
+    assert order_ascending_by_price(items, undo, redo) == [
         [4, 'bec', 'Tub neon LED T5 90cm, Putere 15w', 27.80, 'hall'],
         [5, 'cană', 'Cana pisica Abby ceramica 350ml', 59.90, 'offc'],
         [6, 'tablou', 'Tablou Canvas - Flori, Magnolia, 80 x 120 cm', 59.90, 'hall'],

@@ -3,8 +3,8 @@ from UserInterface.run_ui import run_ui
 
 
 def main():
+    test_everything()
     run_ui()
-    # test_everything()
 
 
 if __name__ == '__main__':
